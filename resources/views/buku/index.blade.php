@@ -57,18 +57,31 @@
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-inverse-warning btn-sm">
+                                    <a href="{{ route('buku.edit', $buku->id) }}" 
+                                    class="btn btn-inverse-warning btn-sm">
                                         <i class="mdi mdi-pencil"></i>
-                                    </button>
-                                    <button class="btn btn-inverse-danger btn-sm">
-                                        <i class="mdi mdi-trash-can"></i>
-                                    </button>
-                                </td>
+                                    </a>
+                                    <form action="{{ route('buku.destroy', $buku->id) }}" 
+                                        method="POST" 
+                                        style="display:inline-block;"
+                                        onsubmit="return confirm('Yakin mau hapus buku ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-inverse-danger btn-sm">
+                                            <i class="mdi mdi-trash-can"></i>
+                                        </button>
+                                    </form>
+                                </td
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+                @if($bukus->isEmpty())
+                <div class="text-center p-4">
+                    <p class="text-muted">Belum ada data Buku.</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>

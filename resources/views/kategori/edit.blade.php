@@ -6,36 +6,25 @@
 
         <div class="page-header">
             <h3 class="page-title">
-                <span class="page-title-icon bg-gradient-primary text-white me-2">
-                    <i class="mdi mdi-tag-plus"></i>
-                </span> Tambah Kategori
+                <span class="page-title-icon bg-gradient-warning text-white me-2">
+                    <i class="mdi mdi-tag-edit"></i>
+                </span> Edit Kategori
             </h3>
         </div>
 
         <div class="card shadow-sm">
             <div class="card-body">
-                <h4 class="card-title mb-4">Form Tambah Kategori</h4>
 
-                {{-- Alert Validation --}}
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                <form action="{{ route('kategori.store') }}" method="POST">
+                <form action="{{ route('kategori.update', $kategori->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
 
                     <div class="form-group mb-4">
                         <label>Nama Kategori</label>
                         <input type="text"
                                name="nama_kategori"
+                               value="{{ $kategori->nama_kategori }}"
                                class="form-control"
-                               value="{{ old('nama_kategori') }}"
                                required>
                     </div>
 
@@ -46,8 +35,8 @@
                         </a>
 
                         <button type="submit"
-                                class="btn btn-gradient-primary btn-sm">
-                            <i class="mdi mdi-content-save"></i> Simpan
+                                class="btn btn-gradient-warning btn-sm">
+                            <i class="mdi mdi-content-save"></i> Update
                         </button>
                     </div>
 

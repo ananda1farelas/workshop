@@ -48,12 +48,23 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group">
-                                        <a href="#" class="btn btn-inverse-warning btn-sm mx-1" title="Edit">
+                                        <a href="{{ route('kategori.edit', $kategori->id) }}"
+                                        class="btn btn-inverse-warning btn-sm mx-1"
+                                        title="Edit">
                                             <i class="mdi mdi-pencil"></i>
                                         </a>
-                                        <button type="button" class="btn btn-inverse-danger btn-sm mx-1" title="Hapus">
-                                            <i class="mdi mdi-trash-can"></i>
-                                        </button>
+                                        <form action="{{ route('kategori.destroy', $kategori->id) }}"
+                                            method="POST"
+                                            style="display:inline-block;"
+                                            onsubmit="return confirm('Yakin ingin menghapus kategori ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="btn btn-inverse-danger btn-sm mx-1"
+                                                    title="Hapus">
+                                                <i class="mdi mdi-trash-can"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -61,13 +72,11 @@
                         </tbody>
                     </table>
                 </div>
-
                 @if($kategoris->isEmpty())
                 <div class="text-center p-4">
                     <p class="text-muted">Belum ada data kategori.</p>
                 </div>
                 @endif
-
             </div>
         </div>
     </div>
