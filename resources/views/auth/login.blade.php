@@ -85,6 +85,14 @@
                         <button type="submit" class="btn btn-gradient-primary btn-lg auth-form-btn text-white">MASUK</button>
                       </div>
 
+                      <div class="mt-3">
+                        <a href="{{ url('/auth/google') }}" 
+                          class="btn btn-light btn-lg auth-form-btn border d-flex align-items-center justify-content-center">
+                          <img src="https://developers.google.com/identity/images/g-logo.png" 
+                                alt="google" width="20" class="me-2">
+                          Login dengan Google
+                        </a>
+                      </div>
                       <div class="text-center mt-4 font-weight-light">
                         Belum punya akun? <a href="{{ route('register') }}" class="text-primary font-weight-bold">Daftar Sekarang</a>
                       </div>
