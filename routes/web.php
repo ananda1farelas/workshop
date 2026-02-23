@@ -8,6 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KategoriController;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -92,6 +93,21 @@ Route::middleware('auth')->group(function () {
     
     })->name('otp.verify'); 
 });
+Route::get('/pdf/sertifikat', function () {
+
+    $pdf = Pdf::loadView('pdf.sertifikat')
+              ->setPaper('a4', 'landscape');
+
+    return $pdf->download('sertifikat.pdf');
+});
+
+Route::get('/pdf/undangan', function () {
+
+    $pdf = Pdf::loadView('pdf.undangan')
+              ->setPaper('a4', 'portrait');
+
+    return $pdf->download('undangan.pdf');
+});
 
 Route::middleware(['auth'])->group(function () {
 
@@ -101,4 +117,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('buku', BukuController::class);
     Route::resource('kategori', KategoriController::class);
+
+    Route::get('/pdf/sertifikat', function () {
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.sertifikat')
+                ->setPaper('a4', 'landscape');
+
+        return $pdf->download('sertifikat.pdf');
+    })->name('pdf.sertifikat');
+
+    Route::get('/pdf/undangan', function () {
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.undangan')
+                ->setPaper('a4', 'portrait');
+
+        return $pdf->download('undangan.pdf');
+    })->name('pdf.undangan');
+
 });

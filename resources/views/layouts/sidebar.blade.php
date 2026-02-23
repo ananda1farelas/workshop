@@ -36,5 +36,30 @@
   </a>
 </li>
 
+<li class="nav-item {{ request()->routeIs(['pdf.sertifikat','pdf.undangan']) ? 'active' : '' }}">
+  <a class="nav-link" data-bs-toggle="collapse" href="#pdfMenu" aria-expanded="false" aria-controls="pdfMenu">
+    <span class="menu-title">PDF Generator</span>
+    <i class="menu-arrow"></i>
+    <i class="mdi mdi-file-pdf-box menu-icon"></i>
+  </a>
+  <div class="collapse" id="pdfMenu">
+    <ul class="nav flex-column sub-menu">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/pdf/sertifikat') }}">
+          Sertifikat (Landscape)
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/pdf/undangan') }}">
+          Undangan (Portrait)
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</li>
+
   </ul>
 </nav>
