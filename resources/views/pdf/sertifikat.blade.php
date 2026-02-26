@@ -3,44 +3,81 @@
 <head>
     <style>
         body {
+            font-family: DejaVu Sans, sans-serif;
             text-align: center;
-            font-family: Arial, sans-serif;
-            border: 10px solid #000;
-            padding: 50px;
+            padding: 40px;
+            border: 15px solid #2E86C1;
         }
 
-        h1 {
+        .title {
             font-size: 50px;
-            margin-bottom: 0;
+            color: #2E86C1;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
-        h2 {
-            font-size: 30px;
+        .subtitle {
+            font-size: 20px;
+            color: #555;
         }
 
         .name {
-            font-size: 40px;
-            margin: 20px 0;
+            font-size: 42px;
+            margin: 25px 0;
+            color: #1B4F72;
             font-weight: bold;
+            border-bottom: 2px solid #2E86C1;
+            display: inline-block;
+            padding: 10px 20px;
+        }
+
+        .event {
+            font-size: 26px;
+            color: #117A65;
+            margin-top: 15px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            font-size: 16px;
+        }
+
+        .signature {
+            margin-top: 40px;
+        }
+
+        .line {
+            width: 200px;
+            margin: auto;
+            border-top: 2px solid black;
         }
     </style>
 </head>
 <body>
 
-    <h1>SERTIFIKAT</h1>
-    <p>Diberikan kepada:</p>
+    <div class="title">SERTIFIKAT</div>
+    <div class="subtitle">Diberikan Kepada</div>
 
     <div class="name">
-        Ananda Farel
+        {{ Auth::user()->name }}
     </div>
 
-    <p>Atas partisipasinya dalam kegiatan</p>
+    <div class="subtitle">
+        Atas Partisipasinya Dalam
+    </div>
 
-    <h2>Pelatihan Laravel & Google Login</h2>
+    <div class="event">
+        Pelatihan Laravel & Google Authentication
+    </div>
 
-    <br><br>
+    <div class="footer">
+        Tanggal: {{ date('d F Y') }}
+    </div>
 
-    <p>Tanggal: {{ date('d M Y') }}</p>
+    <div class="signature">
+        <div class="line"></div>
+        <p>Ketua Panitia</p>
+    </div>
 
 </body>
 </html>

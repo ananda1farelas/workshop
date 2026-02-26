@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KategoriController;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\BarangController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -93,21 +94,6 @@ Route::middleware('auth')->group(function () {
     
     })->name('otp.verify'); 
 });
-Route::get('/pdf/sertifikat', function () {
-
-    $pdf = Pdf::loadView('pdf.sertifikat')
-              ->setPaper('a4', 'landscape');
-
-    return $pdf->download('sertifikat.pdf');
-});
-
-Route::get('/pdf/undangan', function () {
-
-    $pdf = Pdf::loadView('pdf.undangan')
-              ->setPaper('a4', 'portrait');
-
-    return $pdf->download('undangan.pdf');
-});
 
 Route::middleware(['auth'])->group(function () {
 
@@ -118,15 +104,19 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('buku', BukuController::class);
     Route::resource('kategori', KategoriController::class);
 
+    Route::resource('barang', BarangController::class);
+    Route::put('/barang/{id}', [BarangController::class, 'update'])->name('barang.update');
+    Route::post('/cetak-label', [BarangController::class, 'cetak'])->name('barang.cetak');
+
     Route::get('/pdf/sertifikat', function () {
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.sertifikat')
+        $pdf =Pdf::loadView('pdf.sertifikat')
                 ->setPaper('a4', 'landscape');
 
         return $pdf->download('sertifikat.pdf');
     })->name('pdf.sertifikat');
 
     Route::get('/pdf/undangan', function () {
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.undangan')
+        $pdf =Pdf::loadView('pdf.undangan')
                 ->setPaper('a4', 'portrait');
 
         return $pdf->download('undangan.pdf');

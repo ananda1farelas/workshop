@@ -36,6 +36,13 @@
   </a>
 </li>
 
+<li class="nav-item {{ request()->routeIs('barang.index') ? 'active' : '' }}">
+  <a class="nav-link" href="{{ route('barang.index') }}">
+    <span class="menu-title">Tag Harga</span>
+    <i class="mdi mdi-tag menu-icon"></i>
+  </a>
+</li>
+
 <li class="nav-item {{ request()->routeIs(['pdf.sertifikat','pdf.undangan']) ? 'active' : '' }}">
   <a class="nav-link" data-bs-toggle="collapse" href="#pdfMenu" aria-expanded="false" aria-controls="pdfMenu">
     <span class="menu-title">PDF Generator</span>
@@ -56,7 +63,6 @@
           Undangan (Portrait)
         </a>
       </li>
-
     </ul>
   </div>
 </li>

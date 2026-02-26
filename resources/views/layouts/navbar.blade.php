@@ -1,4 +1,8 @@
-    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+@php
+    /** @var \App\Models\User|null $user */
+    $user = Auth::user();
+@endphp
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
 
         <a class="navbar-brand brand-logo" href="{{ url('/dashboard') }}">
@@ -38,7 +42,7 @@
                     <img src="{{ asset('template/assets/images/faces/face1.jpg') }}">
                 </div>
                 <div class="nav-profile-text">
-                    <p class="mb-1 text-black">{{ Auth::user()->name }}</p>
+                    <p class="mb-1 text-black">{{ $user?->name }}</p>
                 </div>
             </a>
 
